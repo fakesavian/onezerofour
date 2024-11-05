@@ -41,3 +41,91 @@
     ]
   }
 }
+import React, { useState, useContext } from 'react';
+import { motion } from 'framer-motion';
+import { GameStateContext } from '../contexts/GameStateContext';
+
+const Terminal = () => {
+  const [input, setInput] = useState('');
+  const { gameState, dispatch } = useContext(GameStateContext);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch({ type: 'PROCESS_COMMAND', payload: input });
+    setInput('');
+  };
+
+  return (
+    <motion.div 
+      className="terminal"
+      initial={{ scale: 0.9, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
+      <div className="terminal-output">
+        {gameState.narrative.map((line, index) => (
+          <p key={index}>{line}</p>
+        ))}
+      </div>
+      <form onSubmit={handleSubmit}>
+        <input 
+          type="text" 
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          placeholder="Enter command..."
+          className="terminal-input"
+        />
+      </form>
+    </motion.div>
+  );
+};
+
+export default Terminal;
+import React, { createContext, useReducer } from 'react';
+
+const initialState = {
+  narrative: ['Welcome to ONEZEROFOUR. Type "start" to begin.'],
+  playerLocation: 'intro',
+  inventory: []
+};
+
+const gameReducer = (state, action) => {
+  switch (action.type) {
+    case 'PROCESS_COMMAND':
+      const command = action.payload.toLowerCase().trim();
+      switch (command) {
+        case 'start':
+          return {
+            ...state,
+            narrative: [
+              ...state.narrative, 
+              'Initializing cybernetic interface...',
+              'Location: Neon District, Sector 104'
+            ],
+            playerLocation: 'neon_district'
+          };
+        default:
+          return {
+            ...state,
+            narrative: [
+              ...state.narrative, 
+              `Unknown command: ${command}`
+            ]
+          };
+      }
+    default:
+      return state;
+  }
+};
+
+export const GameStateContext = createContext();
+
+export const GameStateProvider = ({ children }) => {
+  const [gameState, dispatch] = useReducer(gameReducer, initialState);
+
+  return (
+    <GameStateContext.Provider value={{ gameState, dispatch }}>
+      {children}
+    </GameStateContext.Provider>
+  );
+};

@@ -1,24 +1,23 @@
-import logo from './logo.svg';
+import React from 'react';
+import { motion } from 'framer-motion';
+import Terminal from './components/Terminal';
+import { GameStateProvider } from './contexts/GameStateContext';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <GameStateProvider>
+      <motion.div 
+        className="App"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
+        <div className="cyberpunk-background">
+          <Terminal />
+        </div>
+      </motion.div>
+    </GameStateProvider>
   );
 }
 
