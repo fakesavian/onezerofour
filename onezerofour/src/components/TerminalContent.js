@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const ContentLayout = styled.div`
   display: flex;
   height: 100%;
-  padding: 10px;
+  padding: 10px 10px 10px 15px;
 `;
 
 const FileTree = styled.div`
