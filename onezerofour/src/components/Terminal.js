@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef, useMemo, memo } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
-import { trackPerformance } from '../utils/performanceTracker';
+import { trackPerformance, logUserInteraction } from '../utils/performanceTracker';
 import storyContent from '../data/storyContent.json';
 import { 
   TerminalActivator, 
