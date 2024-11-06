@@ -143,4 +143,81 @@ export const DraggableTerminalWindow = styled.div`
   }
 `;
 
-// Rest of the file remains unchanged
+export const TerminalContentContainer = styled.div`
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+`;
+
+export const NavigationContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding: 20px 0 10px;
+  gap: 20px;
+`;
+
+export const NavigationButton = styled.button`
+  background-color: transparent;
+  border: none;
+  color: #00ff83;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  padding: 5px 15px;
+  min-width: 40px;
+  text-align: center;
+
+  &:hover {
+    color: rgba(0, 255, 131, 0.7);
+  }
+
+  &:disabled {
+    color: rgba(0, 255, 131, 0.3);
+    cursor: not-allowed;
+  }
+`;
+
+export const HomeButton = styled(NavigationButton)`
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 10;
+  color: #00ff83;
+  font-size: 18px;
+  padding: 10px;
+  min-width: 30px;
+  background-color: rgba(0, 255, 131, 0.1);
+  border-radius: 0;
+  border-left: 1px solid rgba(0, 255, 131, 0.3);
+  border-bottom: 1px solid rgba(0, 255, 131, 0.3);
+
+  &:hover {
+    background-color: rgba(0, 255, 131, 0.2);
+  }
+`;
+
+export const TextDisplay = styled.div`
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 10px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  margin-bottom: 10px;
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+`;
