@@ -29,11 +29,11 @@ function Terminal() {
       clearInterval(typeIntervalRef.current);
     }
 
-    let index = 0;
-    // Ensure the first character is immediately visible
+    let index = 1;
+    // Immediately set first character
     setDisplayText(text.charAt(0));
-    index = 1;
 
+    // Start interval for remaining characters
     typeIntervalRef.current = setInterval(() => {
       if (index < text.length) {
         setDisplayText(prev => prev + text.charAt(index));
