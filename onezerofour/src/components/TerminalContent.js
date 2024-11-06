@@ -71,12 +71,54 @@ const ChoiceButton = styled.button`
   }
 `;
 
+const NavigationContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  padding: 10px;
+  background-color: rgba(0, 255, 131, 0.05);
+  border-radius: 4px;
+`;
+
+const NavButton = styled.button`
+  background-color: transparent;
+  border: 1px solid rgba(0, 255, 131, 0.5);
+  color: #00ff83;
+  padding: 5px 15px;
+  font-family: 'Inconsolata', 'Courier New', monospace;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+
+  &:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  &:hover:not(:disabled) {
+    background-color: rgba(0, 255, 131, 0.1);
+    transform: scale(1.05);
+  }
+`;
+
+const ArrowIcon = styled.span`
+  font-size: 16px;
+  margin: 0 5px;
+`;
+
 export function TerminalContent({ 
-  displayText, 
-  currentStage, 
-  storyContent, 
-  onDistrictSelect,
-  showChoices
+  displayText = '', 
+  currentStage = '', 
+  storyContent = { districts: [] }, 
+  onDistrictSelect = () => {},
+  showChoices = false,
+  onAdvanceNarrative = () => {},
+  onNavigateBack = () => {},
+  narrativeIndex = 0,
+  currentDistrict = null,
+  history = []
 }) {
   return (
     <ContentLayout>
@@ -110,6 +152,27 @@ export function TerminalContent({
               </ChoiceButton>
             ))}
           </ChoiceContainer>
+        )}
+
+        {currentStage === 'districtExploration' && currentDistrict && (
+          <NavigationContainer>
+            <NavButton 
+              onClick={onNavigateBack} 
+              disabled={history.length === 0}
+            >
+              <ArrowIcon>←</ArrowIcon> Previous
+            </NavButton>
+            <NavButton 
+              onClick={onAdvanceNarrative}
+              disabled={
+                !currentDistrict || 
+                !currentDistrict.narratives || 
+                narrativeIndex >= (currentDistrict.narratives.length - 1)
+              }
+            >
+              Next <ArrowIcon>→</ArrowIcon>
+            </NavButton>
+          </NavigationContainer>
         )}
       </MainContent>
     </ContentLayout>
