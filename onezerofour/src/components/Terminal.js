@@ -224,20 +224,3 @@ function Terminal() {
 }
 
 export default Terminal;
-export const trackPerformance = (metricName, startTime) => {
-  const endTime = performance.now();
-  const duration = endTime - startTime;
-
-  // Log or send to performance monitoring service
-  console.log(`Performance: ${metricName} took ${duration}ms`);
-
-  return duration;
-};
-
-export const logUserInteraction = (action, metadata = {}) => {
-  console.log('User Interaction:', {
-    action,
-    timestamp: new Date().toISOString(),
-    ...metadata
-  });
-};
