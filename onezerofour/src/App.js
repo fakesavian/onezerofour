@@ -1,23 +1,38 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
 import Terminal from './components/Terminal';
-import { GameStateProvider } from './contexts/GameStateContext';
+import DesktopIcon from './components/DesktopIcon';
 import './App.css';
 
 function App() {
+  const [isTerminalOpen, setIsTerminalOpen] = useState(false);
+
+  const handleOpenTerminal = () => {
+    setIsTerminalOpen(true);
+  };
+
+  const handleCloseTerminal = () => {
+    setIsTerminalOpen(false);
+  };
+
   return (
-    <GameStateProvider>
-      <motion.div 
-        className="App"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-      >
-        <div className="cyberpunk-background">
-          <Terminal />
+    <div className="App">
+      <div className="crt-overlay"></div>
+      <div className="scanline"></div>
+      
+      {!isTerminalOpen && (
+        <div className="desktop">
+          <DesktopIcon 
+            onClick={handleOpenTerminal}
+            icon="/terminal-icon.svg"
+            label="OneZeroFour Terminal"
+          />
         </div>
-      </motion.div>
-    </GameStateProvider>
+      )}
+      
+      {isTerminalOpen && (
+        <Terminal onClose={handleCloseTerminal} />
+      )}
+    </div>
   );
 }
 

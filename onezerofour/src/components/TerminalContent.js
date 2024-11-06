@@ -27,6 +27,7 @@ const MainContent = styled.div`
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  position: relative;
 `;
 
 const SystemInfo = styled.div`
@@ -53,6 +54,35 @@ const ChoiceContainer = styled.div`
   flex-wrap: wrap;
   gap: 10px;
   margin-top: 10px;
+  position: relative;
+`;
+
+const DistrictArrow = styled.div`
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #00ff83;
+  font-size: 32px;
+  opacity: 0.9;
+  cursor: pointer;
+  user-select: none;
+  z-index: 2;
+  text-shadow: 0 0 10px rgba(0, 255, 131, 0.5);
+  transition: all 0.3s ease;
+  padding: 20px;
+  
+  &:hover {
+    opacity: 1;
+    text-shadow: 0 0 15px rgba(0, 255, 131, 0.8);
+  }
+  
+  &.left {
+    left: 0;
+  }
+  
+  &.right {
+    right: 0;
+  }
 `;
 
 const ChoiceButton = styled.button`
@@ -144,6 +174,7 @@ export function TerminalContent({
         
         {showChoices && currentStage === 'districtSelection' && (
           <ChoiceContainer>
+            <DistrictArrow className="left">←</DistrictArrow>
             {storyContent.districts.map((district) => (
               <ChoiceButton 
                 key={district.id}
@@ -152,6 +183,7 @@ export function TerminalContent({
                 {district.name}
               </ChoiceButton>
             ))}
+            <DistrictArrow className="right">→</DistrictArrow>
           </ChoiceContainer>
         )}
 

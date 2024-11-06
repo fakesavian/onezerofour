@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useCallback, useRef, useMemo, memo } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
-import { trackPerformance, logUserInteraction } from '../utils/performanceTracker';
 import storyContent from '../data/storyContent.json';
 import { 
   TerminalActivator, 
@@ -23,19 +22,11 @@ function Terminal() {
   const [isOpen, setIsOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
   const [history, setHistory] = useState([]);
-  const [performanceMetrics, setPerformanceMetrics] = useState({});
 
-  // Memoize expensive computations
-  const availableDistricts = useMemo(() => 
-    storyContent.districts || [], 
-    [storyContent]
-  );
   const textDisplayRef = useRef(null);
   const typeIntervalRef = useRef(null);
 
   const typewriterEffect = useCallback((text, callback) => {
-    const startTime = performance.now();
-
     if (typeIntervalRef.current) {
       clearInterval(typeIntervalRef.current);
     }
@@ -54,16 +45,12 @@ function Terminal() {
         }
       } else {
         clearInterval(typeIntervalRef.current);
-        const endTime = performance.now();
-        setPerformanceMetrics(prev => ({
-          ...prev,
-          typewriterDuration: endTime - startTime
-        }));
+        
         if (callback) callback();
       }
     };
 
-    // Use requestAnimationFrame for smoother rendering
+    // Use setInterval for rendering
     typeIntervalRef.current = setInterval(updateDisplay, 25);
 
     return () => {
@@ -88,6 +75,7 @@ function Terminal() {
   const navigateBack = () => {
     if (history.length > 0) {
       const lastState = history[history.length - 1];
+      
       setCurrentStage(lastState.stage);
       setCurrentDistrict(lastState.district);
       setNarrativeIndex(lastState.narrativeIndex);
@@ -177,7 +165,6 @@ function Terminal() {
       fallback={<div>Something went wrong. Please reload.</div>}
       onError={(error, info) => {
         console.error('Error caught by boundary:', error, info);
-        // Optional: Send error to logging service
       }}
     >
       <DraggableTerminalWindow 
@@ -192,34 +179,35 @@ function Terminal() {
         >
           ✕
         </HomeButton>
-      <TerminalContentContainer>
-        <TextDisplay ref={textDisplayRef}>
-          <TerminalContent 
-            displayText={displayText}
-            currentStage={currentStage}
-            storyContent={storyContent}
-            onDistrictSelect={handleDistrictSelect}
-            showChoices={showChoices}
-          />
-        </TextDisplay>
-        
-        <NavigationContainer>
-          <NavigationButton 
-            onClick={navigateBack} 
-            disabled={history.length === 0}
-          >
-            ◄
-          </NavigationButton>
-          {currentStage === 'districtExploration' && (
+        <TerminalContentContainer>
+          <TextDisplay ref={textDisplayRef}>
+            <TerminalContent 
+              displayText={displayText}
+              currentStage={currentStage}
+              storyContent={storyContent}
+              onDistrictSelect={handleDistrictSelect}
+              showChoices={showChoices}
+            />
+          </TextDisplay>
+          
+          <NavigationContainer>
             <NavigationButton 
-              onClick={advanceNarrative}
+              onClick={navigateBack} 
+              disabled={history.length === 0}
             >
-              ►
+              ◄
             </NavigationButton>
-          )}
-        </NavigationContainer>
-      </TerminalContentContainer>
-    </DraggableTerminalWindow>
+            {currentStage === 'districtExploration' && (
+              <NavigationButton 
+                onClick={advanceNarrative}
+              >
+                ►
+              </NavigationButton>
+            )}
+          </NavigationContainer>
+        </TerminalContentContainer>
+      </DraggableTerminalWindow>
+    </ErrorBoundary>
   );
 }
 
