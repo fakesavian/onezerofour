@@ -1,4 +1,6 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback, useRef, useMemo, memo } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
+import { trackPerformance } from '../utils/performanceTracker';
 import storyContent from '../data/storyContent.json';
 import { 
   TerminalActivator, 
@@ -21,22 +23,30 @@ function Terminal() {
   const [isOpen, setIsOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
   const [history, setHistory] = useState([]);
+  const [performanceMetrics, setPerformanceMetrics] = useState({});
+
+  // Memoize expensive computations
+  const availableDistricts = useMemo(() => 
+    storyContent.districts || [], 
+    [storyContent]
+  );
   const textDisplayRef = useRef(null);
   const typeIntervalRef = useRef(null);
 
   const typewriterEffect = useCallback((text, callback) => {
+    const startTime = performance.now();
+
     if (typeIntervalRef.current) {
       clearInterval(typeIntervalRef.current);
     }
 
-    let index = 1;
-    // Immediately set first character
-    setDisplayText(text.charAt(0));
+    let index = 0;
+    const typedText = [];
 
-    // Start interval for remaining characters
-    typeIntervalRef.current = setInterval(() => {
+    const updateDisplay = () => {
       if (index < text.length) {
-        setDisplayText(prev => prev + text.charAt(index));
+        typedText.push(text.charAt(index));
+        setDisplayText(typedText.join(''));
         index++;
         
         if (textDisplayRef.current) {
@@ -44,9 +54,17 @@ function Terminal() {
         }
       } else {
         clearInterval(typeIntervalRef.current);
+        const endTime = performance.now();
+        setPerformanceMetrics(prev => ({
+          ...prev,
+          typewriterDuration: endTime - startTime
+        }));
         if (callback) callback();
       }
-    }, 30);
+    };
+
+    // Use requestAnimationFrame for smoother rendering
+    typeIntervalRef.current = setInterval(updateDisplay, 25);
 
     return () => {
       if (typeIntervalRef.current) {
@@ -155,9 +173,25 @@ function Terminal() {
   }
 
   return (
-    <DraggableTerminalWindow isClosing={isClosing}>
-      <MatrixRainEffect isClosing={isClosing} />
-      <HomeButton onClick={handleClose}>✕</HomeButton>
+    <ErrorBoundary 
+      fallback={<div>Something went wrong. Please reload.</div>}
+      onError={(error, info) => {
+        console.error('Error caught by boundary:', error, info);
+        // Optional: Send error to logging service
+      }}
+    >
+      <DraggableTerminalWindow 
+        isClosing={isClosing} 
+        aria-label="Interactive Terminal Interface"
+      >
+        <MatrixRainEffect isClosing={isClosing} />
+        <HomeButton 
+          onClick={handleClose} 
+          aria-label="Close Terminal"
+          title="Close Terminal"
+        >
+          ✕
+        </HomeButton>
       <TerminalContentContainer>
         <TextDisplay ref={textDisplayRef}>
           <TerminalContent 
@@ -190,3 +224,20 @@ function Terminal() {
 }
 
 export default Terminal;
+export const trackPerformance = (metricName, startTime) => {
+  const endTime = performance.now();
+  const duration = endTime - startTime;
+
+  // Log or send to performance monitoring service
+  console.log(`Performance: ${metricName} took ${duration}ms`);
+
+  return duration;
+};
+
+export const logUserInteraction = (action, metadata = {}) => {
+  console.log('User Interaction:', {
+    action,
+    timestamp: new Date().toISOString(),
+    ...metadata
+  });
+};
