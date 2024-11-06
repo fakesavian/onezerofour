@@ -93,9 +93,12 @@ export const MatrixRainEffect = styled.div`
   pointer-events: none;
   background: repeating-linear-gradient(
     0deg,
-    rgba(0, 0, 0, 0.05) 0px,
+    rgba(0, 0, 0, 0.15) 0px,
+    rgba(0, 0, 0, 0.15) 1px,
+    rgba(0, 255, 131, 0.05) 1px,
     rgba(0, 255, 131, 0.05) 2px,
-    rgba(0, 0, 0, 0.05) 4px
+    rgba(0, 0, 0, 0.15) 2px,
+    rgba(0, 0, 0, 0.15) 3px
   );
   animation: ${matrixRain} 1s linear infinite;
   transition: opacity 0.3s ease;
