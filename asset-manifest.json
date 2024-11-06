@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/onezerofour/static/css/main.366b364d.css",
+    "main.js": "/onezerofour/static/js/main.d0b33bc5.js",
+    "static/js/453.f722301a.chunk.js": "/onezerofour/static/js/453.f722301a.chunk.js",
+    "index.html": "/onezerofour/index.html",
+    "main.366b364d.css.map": "/onezerofour/static/css/main.366b364d.css.map",
+    "main.d0b33bc5.js.map": "/onezerofour/static/js/main.d0b33bc5.js.map",
+    "453.f722301a.chunk.js.map": "/onezerofour/static/js/453.f722301a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.366b364d.css",
+    "static/js/main.d0b33bc5.js"
+  ]
+}
