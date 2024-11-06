@@ -174,13 +174,13 @@ function Terminal() {
             onClick={navigateBack} 
             disabled={history.length === 0}
           >
-            &#10094;
+            ◄
           </NavigationButton>
           {currentStage === 'districtExploration' && (
             <NavigationButton 
               onClick={advanceNarrative}
             >
-              &#10095;
+              ►
             </NavigationButton>
           )}
         </NavigationContainer>
