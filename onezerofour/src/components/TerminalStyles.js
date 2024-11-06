@@ -1,5 +1,16 @@
 import styled, { keyframes } from 'styled-components';
 
+export {
+  TerminalActivator,
+  MatrixRainEffect,
+  DraggableTerminalWindow,
+  TerminalContentContainer,
+  NavigationContainer,
+  NavigationButton,
+  HomeButton,
+  TextDisplay
+};
+
 const scanLineAnimation = keyframes`
   0% {
     background-position: 0 0;
