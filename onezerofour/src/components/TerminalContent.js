@@ -104,8 +104,9 @@ const NavButton = styled.button`
 `;
 
 const ArrowIcon = styled.span`
-  font-size: 16px;
+  font-size: 14px;
   margin: 0 5px;
+  color: #00ff83;
 `;
 
 export function TerminalContent({ 
