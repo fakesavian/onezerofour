@@ -4,7 +4,7 @@ A retro-terminal style interactive interface built with HTML, CSS, and JavaScrip
 
 ## Live Demo
 
-Visit the live demo at: https://fakesavian.github.io/onezerofour/loading.html
+Visit the live demo at: https://fakesavian.github.io/onezerofour/
 
 ## Features
 
@@ -20,9 +20,9 @@ Visit the live demo at: https://fakesavian.github.io/onezerofour/loading.html
 
 ```
 onezerofour/
-├── index.html          # Main entry point
-├── loading.html        # Loading screen
-├── world.html         # The World section
+├── index.html         # Loading screen / Entry point
+├── main.html         # Main menu screen
+├── world.html        # The World section
 ├── game.html         # The Game section
 ├── districts.html    # Districts information
 ├── architects.html   # Architects information
@@ -40,7 +40,7 @@ onezerofour/
 git clone https://github.com/fakesavian/onezerofour
 ```
 
-2. Open `loading.html` in a web browser to start the experience.
+2. Open `index.html` in a web browser to start the experience.
 
 ## Design
 
@@ -53,6 +53,7 @@ The interface follows a minimalist, retro-terminal aesthetic featuring:
 
 ## Navigation
 
+- Loading Screen → Main Screen
 - Main Screen → The World → Districts/Architects
 - Main Screen → The Game → Start/Load
 - Main Screen → Exit → Confirm/Return
