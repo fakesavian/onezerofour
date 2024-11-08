@@ -7,12 +7,29 @@
     <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
-    <div class="main-container">
+    <div id="enter-overlay" class="enter-overlay">
+        <div class="enter-content">
+            <h2>SYSTEM INITIALIZATION</h2>
+            <button id="enter-button">ENTER</button>
+        </div>
+    </div>
+
+    <div class="main-container" id="main-content" style="display: none;">
         <div class="terminal-screen">
-            <div class="status-text">Initialization System V01</div>
+            <div class="status-text" id="systemStatus">Initialization System V01</div>
             
             <div class="main-content">
-                <h1>MAIN SCREEN</h1>
+                <div class="ascii-logo" id="systemLogo">
+╔══════════════════════════════════════════════════════════════╗
+║   ██████╗ ███╗   ██╗███████╗███████╗ ██████╗ ██╗   ██╗██████╗ ║
+║  ██╔═══██╗████╗  ██║╚══███╔╝██╔════╝██╔═══██╗██║   ██║██╔══██╗║
+║  ██║   ██║██╔██╗ ██║  ███╔╝ █████╗  ██║   ██║██║   ██║██████╔╝║
+║  ██║   ██║██║╚██╗██║ ███╔╝  ██╔══╝  ██║   ██║██║   ██║██╔══██╗║
+║  ╚██████╔╝██║ ╚████║███████╗██║     ╚██████╔╝╚██████╔╝██║  ██║║
+║   ╚═════╝ ╚═╝  ╚═══╝╚══════╝╚═╝      ╚═════╝  ╚═════╝ ╚═╝  ╚═╝║
+╚══════════════════════════════════════════════════════════════╝
+                </div>
+                <h1>MAIN SYSTEM</h1>
                 <div class="cursor"></div>
             </div>
 
@@ -25,21 +42,41 @@
                     <span class="nav-number">[02]</span>
                     the game
                 </div>
-                <div class="nav-item" data-href="exit.html">
+                <div class="nav-item" data-href="districts.html">
                     <span class="nav-number">[03]</span>
+                    districts
+                </div>
+                <div class="nav-item" data-href="exit.html">
+                    <span class="nav-number">[04]</span>
                     exit
                 </div>
             </div>
         </div>
 
-        <div class="system-message">
+        <div class="system-message" id="copyrightMessage">
             Copyright (c) 2024 OZF OS
         </div>
-        <div class="system-message">
+        <div class="system-message" id="authorMessage">
             Only the Authors to start
         </div>
+        <div id="errorDisplay" class="error-display"></div>
     </div>
 
-    <script src="scripts/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const enterOverlay = document.getElementById('enter-overlay');
+            const mainContent = document.getElementById('main-content');
+            const enterButton = document.getElementById('enter-button');
+
+            // Ensure overlay is visible by default
+            enterOverlay.style.display = 'flex';
+            mainContent.style.display = 'none';
+
+            enterButton.addEventListener('click', () => {
+                enterOverlay.style.display = 'none';
+                mainContent.style.display = 'block';
+            });
+        });
+    </script>
 </body>
 </html>
