@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OZF - Network Terminal</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        .terminal-container {
+            width: 100%;
+            height: 70vh;
+            margin: 20px auto;
+            background: rgba(0, 255, 0, 0.05);
+            border: 1px solid var(--primary-green);
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .terminal-header {
+            background: var(--primary-green);
+            color: var(--bg-color);
+            padding: 5px 10px;
+            font-size: 0.9rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .terminal-buttons {
+            display: flex;
+            gap: 5px;
+        }
+
+        .terminal-button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 1px solid rgba(0, 0, 0, 0.3);
+        }
+
+        .terminal-button.close { background: #ff5f56; }
+        .terminal-button.minimize { background: #ffbd2e; }
+        .terminal-button.maximize { background: #27c93f; }
+
+        .terminal-content {
+            padding: 20px;
+            height: calc(100% - 30px);
+            overflow-y: auto;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .command-line {
+            color: var(--primary-green);
+            margin-bottom: 10px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.3s forwards;
+        }
+
+        .response {
+            color: var(--neon-cyan);
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.3s forwards;
+        }
+
+        .error {
+            color: var(--accent-red);
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 8px;
+            height: 15px;
+            background: var(--primary-green);
+            animation: blink 1s infinite;
+            margin-left: 5px;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes glitchText {
+            0% { transform: skew(0deg); }
+            20% { transform: skew(-2deg); }
+            40% { transform: skew(2deg); }
+            60% { transform: skew(-1deg); }
+            80% { transform: skew(1deg); }
+            100% { transform: skew(0deg); }
+        }
+
+        .glitch-effect {
+            animation: glitchText 0.3s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="noise-overlay"></div>
+    <div class="scanline"></div>
+
+    <main class="interface-container">
+        <aside class="sidebar">
+            <div class="menu-item" data-text="> MAIN" onclick="window.location.href='index.html'">> MAIN</div>
+            <div class="menu-item" data-text="> SYSTEMS" onclick="window.location.href='systems.html'">> SYSTEMS</div>
+            <div class="menu-item active" data-text="> NETWORK">> NETWORK</div>
+            <div class="menu-item" data-text="> CONFIG" onclick="window.location.href='config.html'">> CONFIG</div>
+            <div class="menu-item" data-text="> SOCIAL" onclick="window.location.href='social.html'">> SOCIAL</div>
+            <div class="menu-item" data-text="> EXIT" onclick="window.location.href='exit.html'">> EXIT</div>
+        </aside>
+
+        <section class="main-display">
+            <header class="display-header">
+                <h1 class="system-title">/SYS/NETWORK_TERMINAL_</h1>
+                <div class="system-version">BUILD 0.2.1//</div>
+            </header>
+
+            <div class="terminal-container">
+                <div class="terminal-header">
+                    <div class="terminal-buttons">
+                        <div class="terminal-button close"></div>
+                        <div class="terminal-button minimize"></div>
+                        <div class="terminal-button maximize"></div>
+                    </div>
+                    <span>NETWORK_TERMINAL.exe</span>
+                </div>
+                <div class="terminal-content" id="terminal"></div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Terminal commands and responses
+        const commands = [
+            {
+                cmd: 'network_scan --deep',
+                responses: [
+                    'Initializing network scan...',
+                    'Scanning ports: [===>         ] 30%',
+                    'Scanning ports: [======>      ] 60%',
+                    'Scanning ports: [==========>  ] 90%',
+                    'Scan complete. Found 3 active connections',
+                    'Security status: OPTIMAL'
+                ]
+            },
+            {
+                cmd: 'trace_route --target central_node',
+                responses: [
+                    'Tracing route to central_node...',
+                    'Hop 1: 192.168.1.1 (2ms)',
+                    'Hop 2: 10.0.0.1 (5ms)',
+                    'Hop 3: central_node (12ms)',
+                    'Route established. Connection secure.'
+                ]
+            },
+            {
+                cmd: 'sys_check --security',
+                responses: [
+                    'Running security diagnostics...',
+                    'Firewall: ACTIVE',
+                    'Encryption: ENABLED (AES-256)',
+                    'Last breach attempt: NONE',
+                    'System integrity: 100%'
+                ]
+            }
+        ];
+
+        const terminal = document.getElementById('terminal');
+        let currentCommand = 0;
+
+        function typeText(text, element, callback) {
+            let index = 0;
+            element.innerHTML = '> ' + (index === 0 ? '' : text.slice(0, index)) + '<span class="cursor"></span>';
+            
+            const interval = setInterval(() => {
+                index++;
+                element.innerHTML = '> ' + text.slice(0, index) + '<span class="cursor"></span>';
+                
+                if (index >= text.length) {
+                    clearInterval(interval);
+                    if (callback) callback();
+                }
+            }, 50);
+        }
+
+        function showResponses(responses, callback) {
+            let delay = 0;
+            responses.forEach((text, i) => {
+                setTimeout(() => {
+                    const response = document.createElement('div');
+                    response.className = 'response' + (Math.random() < 0.1 ? ' glitch-effect' : '');
+                    response.textContent = text;
+                    terminal.appendChild(response);
+                    
+                    if (i === responses.length - 1 && callback) {
+                        setTimeout(callback, 1000);
+                    }
+                }, delay);
+                delay += 500;
+            });
+        }
+
+        function runCommand() {
+            if (currentCommand >= commands.length) {
+                currentCommand = 0;
+                terminal.innerHTML = '';
+            }
+
+            const cmd = document.createElement('div');
+            cmd.className = 'command-line';
+            terminal.appendChild(cmd);
+
+            typeText(commands[currentCommand].cmd, cmd, () => {
+                showResponses(commands[currentCommand].responses, () => {
+                    currentCommand++;
+                    setTimeout(runCommand, 2000);
+                });
+            });
+        }
+
+        // Start terminal animation
+        runCommand();
+    </script>
+</body>
+</html>

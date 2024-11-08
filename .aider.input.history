@@ -1,0 +1,237 @@
+
+# 2024-11-05 22:09:22.773435
++y
+
+# 2024-11-05 22:47:40.059831
++Lets create a landing page titled "ONEZEROFOUR" The page should feature a interactive animated network terminal thats in the style of dystopian cyber punk, the terminal should tell a textbased multiple choice adventure through its window. users should be able to play and engage with this story. Use the OneZerofour Design Roadmap file as a guide for this.
+
+# 2024-11-05 22:50:55.763551
++C:\Users\savia\coding dev\OZF\OneZeroFour_Design_Roadmap.txt react.js and WebGL/three.js the narative is in the design roadmap, use typing animations glitch effects sound design and color schemes, make it a controlled element on the page
+
+# 2024-11-05 22:52:08.055122
++Design Roadmap for "OneZeroFour: The Core"
++
++---
++
++### Overview
++We are creating an interactive, text-based adventure landing page, inspired by retro-futuristic network terminals. The main objective is to engage users in a branching narrative where they can make decisions through a simulated, damaged terminal connection. The story unfolds as users navigate different districts, each reflecting distinct philosophical themes, guided by the Architects.
++
++---
++
++### Story Content
++**Welcome, Traveler.**  
++*A fragile connection hums to life, flickering through the terminal. Strange symbols blink and distort as the system calibrates. Three Architects whisper beyond the static.*  
++[Architect_1] "Connection stable enough. Lets start simple."  
++[Architect_2] "Or let them explore... Every journey is a path to deeper understanding."  
++[Architect_3] "A delicate dance on the edge of creation. Lets see where they wander. "
++
++#### Entry Point
++- **1. District 0: The Void of Identity and Personal Reality**
++- **2. District 1: The Limits of Physical and Mental Abilities**
++- **3. District 4: Power, Control, and the Nature of Authority**
++
++---
++
++### Coding Instructions
++
++1. **Framework and Libraries**:
++   - Use **React.js** or a similar modern JavaScript library (e.g., **Next.js**, **Vue.js**) to create a responsive and interactive user experience.
++   - For animations and effects, consider using libraries like **Framer Motion** or **GSAP**.
++
++2. **File Structure and Modularity**:
++   - Organize the codebase into small, modular components to facilitate future updates and maintainability.
++   - Create separate components for:
++     - **Terminal Interface**: The main interactive area where the narrative unfolds.
++     - **Narrative Segments**: Manage different story sections and choices in independent files.
++     - **Architect Dialogues**: Reusable components that dynamically display Architect interactions.
++   - Keep CSS modular using a methodology like **CSS Modules** or **Styled Components**.
++
++3. **Optimization Tips**:
++   - **Lazy Load Components**: Ensure that components are loaded only when needed to optimize performance.
++   - **Minimize Asset Sizes**: Compress images and use vector graphics where possible.
++   - **Efficient State Management**: Use hooks like `useState` and `useEffect` wisely to avoid unnecessary re-renders.
++
++4. **Future Modifications**:
++   - Keep the narrative and story content in a separate **JSON file** to simplify content updates.
++   - Design the architecture to allow easy integration of new districts or philosophical themes.
++   - Consider implementing a version control system (e.g., **GitHub**) to manage updates and collaborate with team members.
++
++---
++
++### Example Component Structure
++- **src/**
++  - **components/**
++    - Terminal.js
++    - NarrativeSegment.js
++    - ArchitectDialogue.js
++  - **assets/**
++    - Images, SVGs, and audio files
++  - **data/**
++    - storyContent.json
++  - **App.js**
++
++### Additional Notes
++- Focus on clean, readable code with proper documentation.
++- Ensure the website is accessible and performs well across different devices and browsers.
++- Regularly test the website to catch bugs and optimize the user experience.
++
++---
++
++Thank you for contributing to "OneZeroFour: The Core". Let's bring this adventure to life!
++
+
+# 2024-11-05 22:52:47.516653
++y
+
+# 2024-11-05 22:52:47.527645
++/run npx create-react-app onezerofour
+
+# 2024-11-05 22:57:33.195995
++/run cd onezerofour
+
+# 2024-11-05 22:57:33.333986
++/run npm install three framer-motion @react-three/fiber @react-three/drei gsap
+
+# 2024-11-05 22:58:12.173873
++/run npm start
+
+# 2024-11-05 22:58:41.992297
++continue
+
+# 2024-11-05 22:58:54.199013
++y
+
+# 2024-11-05 22:59:25.894286
++/run nvm install 18
+
+# 2024-11-05 22:59:39.119897
++/run nvm use 18
+
+# 2024-11-05 22:59:48.995426
++/run npx create-react-app@latest onezerofour
+
+# 2024-11-05 23:00:18.776976
++/run cd onezerofour
+
+# 2024-11-05 23:00:18.919953
++/run npm install three framer-motion @react-three/fiber @react-three/drei gsap
+
+# 2024-11-05 23:01:30.670815
++/run npm install
+
+# 2024-11-05 23:02:21.722317
++continue
+
+# 2024-11-05 23:03:07.176550
++y
+
+# 2024-11-05 23:05:00.587761
++/run npm start
+
+# 2024-11-05 23:05:17.302146
++continue
+
+# 2024-11-05 23:05:47.741823
++y
+
+# 2024-11-05 23:05:47.754144
++/run npm install
+
+# 2024-11-05 23:05:51.920974
++/run npm start
+
+# 2024-11-05 23:06:16.245403
++continue
+
+# 2024-11-05 23:06:44.217779
++y
+
+# 2024-11-05 23:06:44.227966
++/run npm cache clean --force
+
+# 2024-11-05 23:06:49.329982
++/run rm -rf node_modules
+
+# 2024-11-05 23:06:49.524980
++/run npm install
+
+# 2024-11-05 23:06:56.848039
++/run npm start
+
+# 2024-11-05 23:07:34.867239
++d
+
+# 2024-11-05 23:07:41.677569
++y
+
+# 2024-11-05 23:07:41.688547
++/run npm install react-scripts --save-dev
+
+# 2024-11-05 23:13:25.121181
++/run npm start
+
+# 2024-11-05 23:14:31.884565
++continue
+
+# 2024-11-05 23:18:56.530355
++y
+
+# 2024-11-05 23:18:56.541348
++/run npm -v
+
+# 2024-11-05 23:18:58.835899
++/run npx react-scripts --version
+
+# 2024-11-05 23:19:41.605185
++/run npm install react-scripts --save-dev
+
+# 2024-11-05 23:21:05.583551
++/run npm cache clean --force
+
+# 2024-11-05 23:21:10.364552
++/run rm -rf node_modules
+
+# 2024-11-05 23:21:10.596578
++/run rm package-lock.json
+
+# 2024-11-05 23:21:10.920554
++/run npm install
+
+# 2024-11-05 23:21:43.016454
++continue
+
+# 2024-11-05 23:22:11.820691
++y
+
+# 2024-11-05 23:22:11.833693
++/run npm cache clean --force
+
+# 2024-11-05 23:22:13.793759
++/run rm -rf node_modules
+
+# 2024-11-05 23:22:13.983761
++/run rm package-lock.json
+
+# 2024-11-05 23:22:14.182763
++/run npm install
+
+# 2024-11-05 23:23:17.467777
++/run npm start
+
+# 2024-11-05 23:23:19.346777
++/run npm run start
+
+# 2024-11-05 23:23:21.217777
++/run npm run dev
+
+# 2024-11-05 23:23:23.090781
++/run npm run serve
+
+# 2024-11-05 23:25:14.633945
++stop
+
+# 2024-11-06 11:03:41.769200
++d
+
+# 2024-11-06 11:04:28.365917
++y

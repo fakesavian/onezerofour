@@ -1,0 +1,35 @@
+.control-panel {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    padding: 20px;
+    background: rgba(0, 17, 0, 0.9);
+    border-top: 2px solid var(--sys-green);
+}
+
+.control-slot {
+    border: 2px solid var(--sys-green);
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    background: rgba(0, 17, 0, 0.8);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.2);
+}
+
+.control-slot:hover {
+    background: rgba(0, 255, 0, 0.1);
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.4);
+}
+
+.control-slot::after {
+    content: attr(data-key);
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    font-size: 0.8em;
+    opacity: 0.7;
+    color: var(--sys-green);
+    text-transform: lowercase;
+}

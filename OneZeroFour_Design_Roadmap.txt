@@ -1,0 +1,129 @@
+Design Roadmap for "OneZeroFour: The Core"
+
+---
+
+### Overview
+We are creating a minimalist, retro-terminal inspired interface that serves as a gateway to our interactive narrative. The design emphasizes stark contrast, ASCII art elements, and a clean, focused user experience reminiscent of early computer systems.
+
+---
+
+### Visual Design Guidelines
+
+1. **Core Design Elements**:
+   - Monochromatic color scheme:
+     * Primary: Pure black background (#000000)
+     * Secondary: Bright white text (#FFFFFF)
+   - Terminal-style typography using monospace fonts
+   - Minimal UI elements with numbered navigation [01], [02], [03]
+   - ASCII art for visual elements and borders
+   - Center-aligned main content areas
+   - Loading sequences using ASCII characters
+
+2. **Interface Structure**:
+   - Main Screen Layout:
+     * Centered content area with clear borders
+     * Bottom-aligned navigation options
+     * Status indicators in top corners
+   - Loading Screen:
+     * ASCII progress bar
+     * System status messages
+     * Connection establishment sequence
+
+3. **Navigation System**:
+   - Numbered options [01], [02], [03] format
+   - Clear exit paths marked
+   - Minimal transition animations
+   - Status feedback for user actions
+
+---
+
+### Story Content
+**Welcome, Traveler.**  
+*A fragile connection hums to life, flickering through the terminal. Strange symbols blink and distort as the system calibrates. Three Architects whisper beyond the static.*  
+[Architect_1] "Connection stable enough. Let's start simple."  
+[Architect_2] "Or let them explore... Every journey is a path to deeper understanding."  
+[Architect_3] "A delicate dance on the edge of creation. Let's see where they wander. 🌌"
+
+#### Entry Points
+- **[01] District 0: The Void of Identity and Personal Reality**
+- **[02] District 1: The Limits of Physical and Mental Abilities**
+- **[03] District 4: Power, Control, and the Nature of Authority**
+
+---
+
+### Technical Implementation
+
+1. **CSS Specifications**:
+   ```css
+   :root {
+     --background: #000000;
+     --text: #FFFFFF;
+     --font-family: 'Courier New', monospace;
+   }
+   ```
+
+2. **Component Architecture**:
+   - **Terminal Interface**:
+     * ASCII border frames
+     * Centered content container
+     * Status line components
+   - **Loading Sequences**:
+     * ASCII progress bars
+     * System message displays
+   - **Navigation Menu**:
+     * Numbered option formatting
+     * Hover state indicators
+     * Exit path components
+
+3. **Animation Guidelines**:
+   - Minimal text fade effects
+   - Simple cursor blink animations
+   - Loading sequence transitions
+   - Subtle hover state changes
+
+4. **Responsive Design**:
+   - Maintain terminal aspect ratio
+   - Scale ASCII art responsively
+   - Preserve monospace formatting
+   - Ensure readability at all sizes
+
+---
+
+### File Structure
+```
+src/
+├── components/
+│   ├── Terminal.js
+│   ├── LoadingSequence.js
+│   ├── NavigationMenu.js
+│   └── ASCIIElements.js
+├── styles/
+│   ├── terminal.css
+│   ├── loading.css
+│   └── navigation.css
+├── assets/
+│   └── ascii/
+└── data/
+    └── storyContent.json
+```
+
+### Implementation Priority
+1. Base terminal interface and ASCII styling
+2. Loading sequence animations
+3. Navigation system
+4. Content integration
+5. Responsive design adjustments
+6. Performance optimization
+
+---
+
+### Additional Notes
+- Ensure consistent monospace rendering across browsers
+- Implement smooth terminal-style typing effects
+- Create fallbacks for ASCII art on mobile devices
+- Maintain high contrast for accessibility
+- Test terminal aesthetics across different screen sizes
+
+---
+
+Remember: The goal is to create an authentic, retro-terminal experience while maintaining usability and engagement.

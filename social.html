@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OZF - Social Feed</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/social.css">
+</head>
+<body>
+    <div class="noise-overlay"></div>
+    <div class="scanline"></div>
+
+    <main class="interface-container">
+        <aside class="sidebar">
+            <div class="menu-item" data-text="> MAIN" onclick="window.location.href='index.html'">> MAIN</div>
+            <div class="menu-item" data-text="> SYSTEMS" onclick="window.location.href='systems.html'">> SYSTEMS</div>
+            <div class="menu-item" data-text="> NETWORK" onclick="window.location.href='network.html'">> NETWORK</div>
+            <div class="menu-item" data-text="> CONFIG" onclick="window.location.href='config.html'">> CONFIG</div>
+            <div class="menu-item active" data-text="> SOCIAL">> SOCIAL</div>
+            <div class="menu-item" data-text="> EXIT" onclick="window.location.href='exit.html'">> EXIT</div>
+        </aside>
+
+        <section class="main-display">
+            <header class="display-header">
+                <h1 class="system-title">/SYS/SOCIAL_FEED_</h1>
+                <div class="system-version">BUILD 0.2.1//</div>
+            </header>
+
+            <div class="feed-container">
+                <div class="dos-window">
+                    <div class="window-header">
+                        <div class="window-buttons">
+                            <div class="window-button close"></div>
+                            <div class="window-button minimize"></div>
+                            <div class="window-button maximize"></div>
+                        </div>
+                        <span>SOCIAL_TERMINAL.exe</span>
+                    </div>
+                    <div class="window-content">
+                        <div class="command-line">
+                            C:\SOCIAL\INSTAGRAM> connect --user ozf.uni<span class="cursor"></span>
+                        </div>
+                        <div id="feed-items">
+                            <div class="loading-text">Establishing neural link...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="scripts/feedData.js"></script>
+    <script src="scripts/social.js"></script>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OZF - Config</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        .config-form {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            background: rgba(0, 255, 0, 0.05);
+            border: 1px solid var(--primary-green);
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .config-form::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(90deg, rgba(0, 255, 0, 0.1) 1px, transparent 1px),
+                linear-gradient(rgba(0, 255, 0, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--neon-cyan);
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 5px var(--neon-cyan);
+        }
+
+        .form-group input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid var(--primary-green);
+            color: var(--primary-green);
+            padding: 10px 0;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            border-bottom-color: var(--neon-cyan);
+            box-shadow: 0 5px 15px rgba(0, 255, 255, 0.1);
+        }
+
+        .submit-btn {
+            background: transparent;
+            border: 1px solid var(--primary-green);
+            color: var(--primary-green);
+            padding: 12px 30px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(0, 255, 0, 0.2),
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        .submit-btn:hover {
+            border-color: var(--neon-cyan);
+            color: var(--neon-cyan);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        .success-message {
+            display: none;
+            color: var(--primary-green);
+            text-align: center;
+            padding: 20px;
+            animation: glitchText 0.4s infinite;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--neon-cyan);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px var(--neon-cyan);
+        }
+
+        @keyframes formGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(0, 255, 0, 0.2); }
+            50% { box-shadow: 0 0 30px rgba(0, 255, 255, 0.3); }
+        }
+    </style>
+</head>
+<body>
+    <div class="noise-overlay"></div>
+    <div class="scanline"></div>
+
+    <main class="interface-container">
+        <aside class="sidebar">
+            <div class="menu-item" data-text="> MAIN" onclick="window.location.href='index.html'">> MAIN</div>
+            <div class="menu-item" data-text="> SYSTEMS" onclick="window.location.href='systems.html'">> SYSTEMS</div>
+            <div class="menu-item" data-text="> NETWORK" onclick="window.location.href='network.html'">> NETWORK</div>
+            <div class="menu-item active" data-text="> CONFIG">> CONFIG</div>
+            <div class="menu-item" data-text="> SOCIAL" onclick="window.location.href='social.html'">> SOCIAL</div>
+            <div class="menu-item" data-text="> EXIT" onclick="window.location.href='exit.html'">> EXIT</div>
+        </aside>
+
+        <section class="main-display">
+            <header class="display-header">
+                <h1 class="system-title">/SYS/CONFIG_ACCESS_</h1>
+                <div class="system-version">BUILD 0.2.1//</div>
+            </header>
+
+            <form class="config-form" id="configForm">
+                <h2 class="form-header">Neural Link Registration</h2>
+                <div class="form-group">
+                    <label>User Identification</label>
+                    <input type="text" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label>Neural Link Address</label>
+                    <input type="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Access Level</label>
+                    <input type="text" name="access" value="LEVEL_1" readonly>
+                </div>
+                <button type="submit" class="submit-btn">INITIALIZE CONNECTION</button>
+                <div class="success-message">CONNECTION ESTABLISHED - NEURAL LINK ACTIVE</div>
+            </form>
+        </section>
+    </main>
+
+    <script>
+        document.getElementById('configForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const form = e.target;
+            const successMessage = form.querySelector('.success-message');
+            
+            // Simulate form submission with glitch effect
+            form.style.opacity = '0.5';
+            setTimeout(() => {
+                form.reset();
+                form.style.opacity = '1';
+                successMessage.style.display = 'block';
+                
+                // Hide success message after 3 seconds
+                setTimeout(() => {
+                    successMessage.style.display = 'none';
+                }, 3000);
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,210 @@
+:root {
+    --text: #FFFFFF;
+    --background: #000000;
+    --border: #FFFFFF;
+}
+
+/* Global styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--background);
+    color: var(--text);
+    font-family: 'Courier New', monospace;
+    line-height: 1.6;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Main container */
+.main-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+}
+
+/* Terminal screen */
+.terminal-screen {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border: 1px solid var(--text);
+    padding: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Enhanced ASCII Border */
+.terminal-screen::before {
+    content: "╔══════════════════════════════════════════════════════════════╗";
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    font-size: 14px;
+}
+
+.terminal-screen::after {
+    content: "╚══════════════════════════════════════════════════════════════╝";
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    font-size: 14px;
+}
+
+/* Navigation menu */
+.nav-menu {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 600px;
+    margin-top: 20px;
+    border: 1px solid var(--text);
+    padding: 2px;
+}
+
+.nav-item {
+    padding: 5px 15px;
+    border: 1px solid var(--text);
+    cursor: pointer;
+    text-align: center;
+    min-width: 120px;
+    transition: background-color 0.2s;
+    position: relative;
+}
+
+.nav-item:hover {
+    background-color: var(--text);
+    color: var(--background);
+}
+
+/* Loading bar */
+.loading-bar {
+    width: 100%;
+    max-width: 400px;
+    height: 20px;
+    border: 1px solid var(--text);
+    margin: 20px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.loading-progress {
+    height: 100%;
+    background-color: var(--text);
+    width: 0%;
+    animation: loading 2s linear infinite;
+}
+
+/* Status text */
+.status-text {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+/* Main content */
+.main-content {
+    text-align: center;
+    margin: 20px 0;
+    width: 100%;
+    max-width: 600px;
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    letter-spacing: 2px;
+}
+
+/* Navigation numbers */
+.nav-number {
+    font-size: 14px;
+    opacity: 0.8;
+    margin-right: 5px;
+}
+
+/* ASCII art */
+.ascii-art {
+    white-space: pre;
+    font-family: 'Courier New', monospace;
+    text-align: left;
+    margin: 20px auto;
+    font-size: 14px;
+    line-height: 1.2;
+}
+
+/* System messages */
+.system-message {
+    font-size: 12px;
+    opacity: 0.8;
+    margin: 5px 0;
+    text-align: center;
+}
+
+/* Cursor */
+.cursor {
+    display: inline-block;
+    width: 8px;
+    height: 14px;
+    background-color: var(--text);
+    margin-left: 4px;
+    animation: blink 1s infinite;
+}
+
+/* Basic animations */
+@keyframes loading {
+    0% { width: 0%; }
+    100% { width: 100%; }
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .nav-menu {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .nav-item {
+        width: 100%;
+    }
+
+    .terminal-screen {
+        aspect-ratio: auto;
+        height: 70vh;
+    }
+
+    .terminal-screen::before,
+    .terminal-screen::after {
+        font-size: 12px;
+        content: "╔═════════════════╗";
+    }
+}
