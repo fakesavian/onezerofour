@@ -2,6 +2,10 @@
 
 A retro-terminal style interactive interface built with HTML, CSS, and JavaScript. The project features a minimalist, text-based design inspired by classic computer terminals.
 
+## Live Demo
+
+Visit the live demo at: https://fakesavian.github.io/onezerofour/loading.html
+
 ## Features
 
 - Retro terminal aesthetic with ASCII art elements
@@ -33,7 +37,7 @@ onezerofour/
 
 1. Clone the repository:
 ```bash
-git clone [repository-url]
+git clone https://github.com/fakesavian/onezerofour
 ```
 
 2. Open `loading.html` in a web browser to start the experience.
