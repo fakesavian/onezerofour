@@ -44,8 +44,13 @@ body {
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+/* Boot screen specific styles */
+.boot-screen {
+    padding: 40px;
 }
 
 /* Enhanced ASCII Border */
@@ -95,24 +100,6 @@ body {
     color: var(--background);
 }
 
-/* Loading bar */
-.loading-bar {
-    width: 100%;
-    max-width: 400px;
-    height: 20px;
-    border: 1px solid var(--text);
-    margin: 20px 0;
-    position: relative;
-    overflow: hidden;
-}
-
-.loading-progress {
-    height: 100%;
-    background-color: var(--text);
-    width: 0%;
-    animation: loading 2s linear infinite;
-}
-
 /* Status text */
 .status-text {
     position: absolute;
@@ -143,16 +130,6 @@ h1 {
     margin-right: 5px;
 }
 
-/* ASCII art */
-.ascii-art {
-    white-space: pre;
-    font-family: 'Courier New', monospace;
-    text-align: left;
-    margin: 20px auto;
-    font-size: 14px;
-    line-height: 1.2;
-}
-
 /* System messages */
 .system-message {
     font-size: 12px;
@@ -171,12 +148,73 @@ h1 {
     animation: blink 1s infinite;
 }
 
-/* Basic animations */
-@keyframes loading {
-    0% { width: 0%; }
-    100% { width: 100%; }
+/* Enter Overlay Styles */
+.enter-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--background);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    color: var(--text);
 }
 
+.boot-sequence {
+    width: 100%;
+    text-align: left;
+}
+
+.vertical-bars {
+    font-family: monospace;
+    font-size: 14px;
+    line-height: 1;
+    margin-bottom: 40px;
+    letter-spacing: 2px;
+    border: 1px solid var(--text);
+    padding: 10px;
+}
+
+.boot-text {
+    margin: 40px 0;
+    font-size: 14px;
+    line-height: 2;
+}
+
+.loading-progress-bar {
+    width: 100%;
+    height: 20px;
+    border: 1px solid var(--text);
+    margin: 40px 0;
+    position: relative;
+    background-color: var(--background);
+}
+
+.progress {
+    height: 100%;
+    width: 0;
+    background-color: var(--text);
+    transition: width 0.5s ease;
+}
+
+.loading-text {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 16px;
+    letter-spacing: 2px;
+}
+
+.author-text {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+/* Basic animations */
 @keyframes blink {
     0%, 100% { opacity: 1; }
     50% { opacity: 0; }
@@ -207,42 +245,8 @@ h1 {
         font-size: 12px;
         content: "╔═════════════════╗";
     }
-}
 
-/* Enter Overlay Styles */
-.enter-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--background);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    color: var(--text);
-}
-
-.enter-content {
-    text-align: center;
-    background-color: var(--background);
-    padding: 20px;
-    border: 2px solid var(--text);
-}
-
-#enter-button {
-    background-color: var(--text);
-    color: var(--background);
-    border: none;
-    padding: 10px 20px;
-    font-family: 'Courier New', monospace;
-    font-size: 16px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-#enter-button:hover {
-    background-color: #666;
-    transform: scale(1.05);
+    .boot-screen {
+        padding: 20px;
+    }
 }

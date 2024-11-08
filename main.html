@@ -8,9 +8,28 @@
 </head>
 <body>
     <div id="enter-overlay" class="enter-overlay">
-        <div class="enter-content">
-            <h2>SYSTEM INITIALIZATION</h2>
-            <button id="enter-button">ENTER</button>
+        <div class="terminal-screen boot-screen">
+            <div class="status-text">Initialization System V01</div>
+            
+            <div class="boot-sequence">
+                <div class="vertical-bars">
+                    |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+                </div>
+                
+                <div class="boot-text">
+                    <p>BIOS Version 1.0.4 (c) 2024 OZF</p>
+                    <p>Memory Test: OK</p>
+                    <p>System Initialization: Complete</p>
+                    <p>Loading Core Systems...</p>
+                </div>
+
+                <div class="loading-progress-bar">
+                    <div class="progress"></div>
+                </div>
+
+                <div class="loading-text">LOADING...</div>
+                <div class="author-text">Only the Authors to start</div>
+            </div>
         </div>
     </div>
 
@@ -19,17 +38,7 @@
             <div class="status-text" id="systemStatus">Initialization System V01</div>
             
             <div class="main-content">
-                <div class="ascii-logo" id="systemLogo">
-╔══════════════════════════════════════════════════════════════╗
-║   ██████╗ ███╗   ██╗███████╗███████╗ ██████╗ ██╗   ██╗██████╗ ║
-║  ██╔═══██╗████╗  ██║╚══███╔╝██╔════╝██╔═══██╗██║   ██║██╔══██╗║
-║  ██║   ██║██╔██╗ ██║  ███╔╝ █████╗  ██║   ██║██║   ██║██████╔╝║
-║  ██║   ██║██║╚██╗██║ ███╔╝  ██╔══╝  ██║   ██║██║   ██║██╔══██╗║
-║  ╚██████╔╝██║ ╚████║███████╗██║     ╚██████╔╝╚██████╔╝██║  ██║║
-║   ╚═════╝ ╚═╝  ╚═══╝╚══════╝╚═╝      ╚═════╝  ╚═════╝ ╚═╝  ╚═╝║
-╚══════════════════════════════════════════════════════════════╝
-                </div>
-                <h1>MAIN SYSTEM</h1>
+                <h1>MAIN SCREEN</h1>
                 <div class="cursor"></div>
             </div>
 
@@ -44,10 +53,6 @@
                 </div>
                 <div class="nav-item" data-href="districts.html">
                     <span class="nav-number">[03]</span>
-                    districts
-                </div>
-                <div class="nav-item" data-href="exit.html">
-                    <span class="nav-number">[04]</span>
                     exit
                 </div>
             </div>
@@ -66,16 +71,23 @@
         document.addEventListener('DOMContentLoaded', () => {
             const enterOverlay = document.getElementById('enter-overlay');
             const mainContent = document.getElementById('main-content');
-            const enterButton = document.getElementById('enter-button');
-
-            // Ensure overlay is visible by default
-            enterOverlay.style.display = 'flex';
-            mainContent.style.display = 'none';
-
-            enterButton.addEventListener('click', () => {
-                enterOverlay.style.display = 'none';
-                mainContent.style.display = 'block';
-            });
+            const progress = document.querySelector('.progress');
+            
+            // Simulate loading progress
+            let width = 0;
+            const interval = setInterval(() => {
+                if (width >= 100) {
+                    clearInterval(interval);
+                    // Add click event listener after loading completes
+                    enterOverlay.addEventListener('click', () => {
+                        enterOverlay.style.display = 'none';
+                        mainContent.style.display = 'block';
+                    });
+                } else {
+                    width++;
+                    progress.style.width = width + '%';
+                }
+            }, 50);
         });
     </script>
 </body>
