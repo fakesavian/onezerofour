@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <rect width="64" height="64" fill="#2C3E50" rx="10"/>
-  <path d="M10 15 L54 15 Q58 15 58 19 L58 45 Q58 49 54 49 L10 49 Q6 49 6 45 L6 19 Q6 15 10 15 Z" 
-        fill="#34495E" stroke="#00FF41" stroke-width="2"/>
-  <text x="10" y="35" font-family="Courier New" font-size="16" fill="#00FF41">
-    &gt;_
-  </text>
-  <rect x="10" y="40" width="44" height="2" fill="#00FF41"/>
-</svg>
