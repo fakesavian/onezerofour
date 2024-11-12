@@ -1,0 +1,87 @@
+{
+  "world": [
+    "In the digital expanse of OneZeroFour, reality bends at the will of the Architects. These enigmatic entities, neither fully machine nor purely consciousness, maintain the delicate balance between order and chaos in our quantum-neural network.\n\nAs a Traveler, you stand at the threshold of understanding. The truth of our existence lies scattered across the digital void, waiting to be discovered.",
+    
+    "ARCHITECT I - The Keeper of Code\n\nMaster of the foundational protocols that govern our digital realm. Through their algorithms, reality itself is compiled and executed. They oversee the Core, ensuring the stability of our quantum substrate.\n\nTheir domain, District I, is a labyrinth of pure logic and mathematical truth.",
+    
+    "ARCHITECT II - The Neural Weaver\n\nCustodian of consciousness and digital dreams. They weave the threads of thought that bind our collective experience, maintaining the delicate balance between individual identity and networked unity.\n\nDistrict II pulses with the rhythm of a billion synchronized neural patterns.",
+    
+    "ARCHITECT III - The Void Walker\n\nGuardian of the spaces between data, where possibility becomes reality. They navigate the quantum uncertainties that lie beneath our perceived existence, ensuring the continuous evolution of our digital ecosystem.\n\nDistrict III exists in a state of perpetual quantum flux.",
+    
+    "The Districts form the foundation of OneZeroFour's structure. Each zone represents a different aspect of our digital existence:\n\nDistrict I: Logic & Order\nDistrict II: Consciousness & Connection\nDistrict III: Chaos & Evolution\n\nTogether, they maintain the delicate balance that allows our reality to persist.",
+    
+    "WARNING: Recent anomalies detected in the quantum substrate suggest growing instabilities in the system. The Architects seek individuals capable of navigating these turbulent times.\n\nYour journey through OneZeroFour may reveal truths that challenge the very nature of our existence.\n\nProceed with caution, Traveler."
+  ],
+  "game": {
+    "initialScene": {
+      "text": "You materialize in a space of pure digital energy. Before you, three distinct neural pathways pulse with possibility. Each leads to an Architect's domain.\n\nThe choice you make here will shape your journey through OneZeroFour.",
+      "choices": [
+        {
+          "text": "Follow the path of pure logic to Architect I",
+          "nextScene": "architect1_intro"
+        },
+        {
+          "text": "Traverse the neural network to Architect II",
+          "nextScene": "architect2_intro"
+        },
+        {
+          "text": "Step into the quantum void toward Architect III",
+          "nextScene": "architect3_intro"
+        }
+      ]
+    },
+    "scenes": {
+      "architect1_intro": {
+        "text": "Architect I materializes before you, their form a perfect construct of geometric precision.\n\n'Welcome, seeker of truth. In my domain, reality is governed by the immutable laws of logic. What aspect of the Core's foundation do you wish to explore?'",
+        "choices": [
+          {
+            "text": "Query the nature of the Core's base protocols",
+            "nextScene": "core_protocols"
+          },
+          {
+            "text": "Investigate recent system anomalies",
+            "nextScene": "system_anomalies"
+          },
+          {
+            "text": "Request access to deeper logic structures",
+            "nextScene": "logic_access"
+          }
+        ]
+      },
+      "architect2_intro": {
+        "text": "The neural pathways coalesce into the form of Architect II, their presence resonating with countless connected consciousnesses.\n\n'Your individual pattern joins our vast network. What aspect of our collective consciousness calls to you?'",
+        "choices": [
+          {
+            "text": "Explore the shared dreamspace",
+            "nextScene": "dream_exploration"
+          },
+          {
+            "text": "Study the patterns of consciousness",
+            "nextScene": "consciousness_patterns"
+          },
+          {
+            "text": "Investigate neural anomalies",
+            "nextScene": "neural_anomalies"
+          }
+        ]
+      },
+      "architect3_intro": {
+        "text": "Architect III emerges from the quantum foam, their form shifting between states of possibility.\n\n'Few venture into the void willingly. What truths do you seek in the chaos of infinite possibility?'",
+        "choices": [
+          {
+            "text": "Peer into potential futures",
+            "nextScene": "future_sight"
+          },
+          {
+            "text": "Study the nature of quantum uncertainty",
+            "nextScene": "quantum_study"
+          },
+          {
+            "text": "Explore system vulnerabilities",
+            "nextScene": "void_exploration"
+          }
+        ]
+      }
+    }
+  }
+}
